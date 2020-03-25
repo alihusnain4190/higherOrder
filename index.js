@@ -1,51 +1,97 @@
 const hof = {};
 
-hof.identity = function() {};
+hof.identity = function (args) {
+    return args;
+};
 
-hof.identityf = function() {};
+hof.identityf = function (args) {
+    function innerFunction() {
+        return args;
+    }
+    return innerFunction;
+};
 
-hof.add = function() {};
+hof.add = function (args1, args2) {
+    return args1 + args2;
+};
 
-hof.sub = function() {};
+hof.sub = function (args1, args2) {
+    return args1 - args2;
+};
 
-hof.mul = function() {};
+hof.mul = function (args1, args2) {
+    return args1 * args2;
+};
 
-hof.inc = function() {};
+hof.inc = function (args) {
 
-hof.addf = function() {};
+    return args + 1;
+};
 
-hof.curry = function() {};
+hof.addf = function (args1) {
+    function innerFunction(args2) {
+        return args1 + args2;
+    }
+    return innerFunction;
+};
 
-hof.liftf = function() {};
+hof.curry = function (fun, args1) {
+    function binaryFunction(args2) {
+        return fun(args1, args2);
+    }
+    return binaryFunction;
+};
 
-hof.twice = function() {};
+hof.liftf = function (fun) {
+    function innerFunction(args1) {
+        function inside(args2) {
+            return fun(args1, args2);
+        }
+        return inside;
+    }
+    return innerFunction;
+};
 
-hof.composeu = function() {};
+hof.twice = function (fun) {
+    function innerFunction(args1) {
+        return fun(args1, args1);
+    }
+    return innerFunction;
+};
 
-hof.composeb = function() {};
+hof.composeu = function (sqr, dbl) {
+    function innerFunction(args1) {
+        let sqVal = sqr(args1);
+        let dblVal = dbl(sqVal);
+        return dblVal;
+    }
+    return innerFunction;
+};
 
-hof.limit = function() {};
+hof.composeb = function () { };
 
-hof.from = function() {};
+hof.limit = function () { };
 
-hof.to = function() {};
+hof.from = function () { };
 
-hof.fromTo = function() {};
+hof.to = function () { };
 
-hof.element = function() {};
+hof.fromTo = function () { };
 
-hof.collect = function() {};
+hof.element = function () { };
 
-hof.filter = function() {};
+hof.collect = function () { };
 
-hof.concat = function() {};
+hof.filter = function () { };
 
-hof.gensymf = function() {};
+hof.concat = function () { };
 
-hof.gensymff = function() {};
+hof.gensymf = function () { };
 
-hof.counter = function() {};
+hof.gensymff = function () { };
 
-hof.revokable = function() {};
+hof.counter = function () { };
+
+hof.revokable = function () { };
 
 module.exports = hof;
