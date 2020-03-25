@@ -68,17 +68,62 @@ hof.composeu = function (sqr, dbl) {
     return innerFunction;
 };
 
-hof.composeb = function () { };
+hof.composeb = function (fun1, fun2) {
+    function innerFunction(a, b, c) {
+        let addVal = fun1(a, b);
+        let mulVal = fun2(addVal, c);
+        return mulVal;
+    }
+    return innerFunction;
 
-hof.limit = function () { };
+};
 
-hof.from = function () { };
+hof.limit = function (fun, limit) {
 
-hof.to = function () { };
+    let count = 0;
+    function innerFunction(val1, val2) {
+        count++;
+        if (count <= limit) {
+            return fun(val1, val2);
+        }
+    }
+    return innerFunction;
+};
 
-hof.fromTo = function () { };
+hof.from = function () {
+    let count = 0;
+    function innerFunction() {
+        return count++;
+    }
+    return innerFunction;
+};
 
-hof.element = function () { };
+hof.to = function (fun, limit) {
+
+    function innerFunction() {
+        let val = fun();
+        if (val < limit) {
+            return val;
+        }
+    }
+    return innerFunction;
+};
+hof.fromTo = function (val, limit) {
+    function innerFunction() {
+        if (val === 0) {
+            val++;
+            return 0;
+        }
+        if (val < limit) {
+            return val++;
+        }
+    }
+    return innerFunction;
+};
+
+hof.element = function () {
+
+};
 
 hof.collect = function () { };
 
